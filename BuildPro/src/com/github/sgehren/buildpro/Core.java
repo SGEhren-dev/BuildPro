@@ -1,9 +1,6 @@
 package com.github.sgehren.buildpro;
 
-import com.github.sgehren.buildpro.commands.Copy;
-import com.github.sgehren.buildpro.commands.Paste;
-import com.github.sgehren.buildpro.commands.Selector;
-import com.github.sgehren.buildpro.commands.Set;
+import com.github.sgehren.buildpro.commands.*;
 import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,10 +18,7 @@ public class Core extends JavaPlugin
         //Register Events
         new Events(this);
         //Register commands
-        getCommand("selector").setExecutor(new Selector());
-        getCommand("copy").setExecutor(new Copy());
-        getCommand("paste").setExecutor(new Paste());
-        getCommand("set").setExecutor(new Set());
+        new CommandsHandler(this);
 
         //Setup Config
         getConfig().options().copyDefaults();
