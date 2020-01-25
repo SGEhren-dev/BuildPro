@@ -14,3 +14,9 @@ commands:
   paste:
     description: Pastes the selection
     usage: /<command>
+  set:
+    description: Sets the blocks in the selection
+    usage: /<command>
+  replace:
+    description: Replace certain blocks in the selection with a specific material
+    usage: /<command>
