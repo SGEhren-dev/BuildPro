@@ -1,0 +1,16 @@
+main: com.github.sgehren.buildpro.Core
+name: BuildPro
+version: 1.0.0
+api-version: 1.14
+author: SGEhren
+description: A plugin for Professional Builders
+commands:
+  selector:
+    description: Gives the player the selector object
+    usage: /<command>
+  copy:
+    description: Copies the selection
+    usage: /<command>
+  paste:
+    description: Pastes the selection
+    usage: /<command>
