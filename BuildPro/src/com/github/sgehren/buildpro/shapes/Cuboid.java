@@ -1,6 +1,5 @@
 package com.github.sgehren.buildpro.shapes;
 
-import com.github.sgehren.buildpro.editor.Mathf;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
@@ -24,12 +23,12 @@ public class Cuboid implements Iterable<Block>, Cloneable, ConfigurationSerializ
     {
         if(l1.getWorld() != l2.getWorld()) throw new IllegalArgumentException("Locations must be on the same world");
         this.worldName = l1.getWorld().getName();
-        this.x1 = Mathf.getMinX(l1, l2);
-        this.y1 = Mathf.getMinY(l1, l2);
-        this.z1 = Mathf.getMinZ(l1, l2);
-        this.x2 = Mathf.getMaxX(l1, l2);
-        this.y2 = Mathf.getMaxY(l1, l2);
-        this.z2 = Mathf.getMaxZ(l1, l2);
+        this.x1 = Math.min(l1.getBlockX(), l2.getBlockX());
+        this.y1 = Math.min(l1.getBlockY(), l2.getBlockY());
+        this.z1 = Math.min(l1.getBlockZ(), l2.getBlockZ());
+        this.x2 = Math.max(l1.getBlockX(), l2.getBlockX());
+        this.y2 = Math.max(l1.getBlockY(), l2.getBlockY());
+        this.z2 = Math.max(l1.getBlockZ(), l2.getBlockZ());
     }
 
     /**

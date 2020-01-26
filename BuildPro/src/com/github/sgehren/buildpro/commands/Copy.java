@@ -20,10 +20,10 @@ public class Copy implements CommandExecutor {
 
     Events events = new Events();
 
-    public static Cuboid copy = Events.cuboid;
-
     public static List<Block> blocks = new ArrayList<>();
     public static List<Block> blocksCopy = new ArrayList<>();
+
+    public static Cuboid copy;
 
     private static double playerRotationAtTimeOfCopy;           //Get the direction the player is facing at the time of copy, then put this into getCardinalDirection
 
@@ -33,6 +33,8 @@ public class Copy implements CommandExecutor {
         if(sender instanceof Player)
         {
             Player p = (Player) sender;
+
+            copy = new Cuboid(Events.primarySelection, Events.secondarySelection);
 
             if(copy != null) { p.sendMessage(ChatColor.LIGHT_PURPLE + "Your selection has been copied!"); }
         }

@@ -14,6 +14,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -24,10 +25,6 @@ public class Paste implements CommandExecutor {
 
     private static Location locationOfPlayerAtPaste;                    //Player location at time of paste
 
-    private Location blockLoc1 = events.primarySelection;               //Location of our first selection
-    private Location blockLoc2 = events.secondarySelection;             //Location of our second selection
-
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
 
@@ -36,24 +33,19 @@ public class Paste implements CommandExecutor {
             Player p = (Player) sender;
             World world = p.getWorld();
 
-            Cuboid paste = Copy.copy;
-
-            List<Block> blocksInCuboid = paste.getBlocks();
+            Cuboid paste = new Cuboid(Events.primarySelection, Events.secondarySelection);
 
             int nX = p.getLocation().getBlockX() + paste.getSizeX();
             int nY = p.getLocation().getBlockY() + paste.getSizeY();
             int nZ = p.getLocation().getBlockZ() + paste.getSizeZ();
 
-            int i = 0;
+            Location pLoc = p.getLocation();
+            Location newLoc = new Location(world, nX, nY, nZ);
+            Cuboid newCuboid = new Cuboid(pLoc, newLoc);
 
-            for(int x = p.getLocation().getBlockX(); x <= nX; x++) {
-                for(int y = p.getLocation().getBlockY(); y <= nY; y++) {
-                    for(int z = p.getLocation().getBlockZ(); z <= nZ; z++) {
-                        world.getBlockAt(x, y, z).setType(blocksInCuboid.get(i).getType());
-                        i++;
-                    }
-                }
-            }
+            List<Block> blockList = paste.getBlocks();
+
+            for(Block b : blockList) { System.out.println(b.getType() + " " + b.getX() + " " + b.getY() + " " + b.getZ()); }
         }
 
         return false;
